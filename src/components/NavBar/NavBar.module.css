@@ -1,0 +1,15 @@
+.divPrincipal {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 40px;
+    width: 100vw;
+}
+
+.button {
+    width: 70px;
+    height: 70px;
+    border-radius: 57px;
+    background: rgba(108, 182, 224, 0.85);
+    margin: 5px 25px;
+}

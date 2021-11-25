@@ -1,0 +1,21 @@
+.divPrincipal {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(https://img.freepik.com/vector-gratis/fondo-hexagonal-oscuro-color-degradado_79603-1409.jpg?size=626&ext=jpg);
+    background-size: cover;
+    background-position-x: -200px;
+}
+
+.barTitle {
+    position: absolute;
+    width: 100vw;
+    height: 70px;
+    background: rgba(108, 182, 224, 0.85);
+}
+
+.h1 {
+    margin: 0px;
+    text-align: center;
+    padding: 0px;
+    margin-top: 20px;
+}
