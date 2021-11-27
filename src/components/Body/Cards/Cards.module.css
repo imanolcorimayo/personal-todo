@@ -27,3 +27,8 @@
     left: 15px;
     width: 35px;
 }
+
+.link {
+    text-decoration: none;
+    color: black;
+}

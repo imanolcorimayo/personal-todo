@@ -7,6 +7,8 @@ import Trabajo from '../../../img/trabajo.svg'
 import Proyectos from '../../../img/proyectos.svg'
 import Salud from '../../../img/salud.svg'
 
+import { Link } from 'react-router-dom'
+
 export default function Cards() {
     let arr = [
         {
@@ -65,16 +67,19 @@ export default function Cards() {
             {
                 arr.map((el, i) => {
                     return (
-                        <div key={ i } className={ styles.card }>
-                            <span className={ styles.spanCard }>
-                                {el.title}
-                            </span>
-                            <img className={ styles.img } src={ 
-                                el.type === "Facultad" ? Facultad : 
-                                el.type === "Trabajo" ? Trabajo :  
-                                el.type === "Salud" ? Salud : Proyectos
-                             } alt="" />
-                        </div>
+                        <Link className={ styles.link } to={ "Details/" + el.id}>
+                            <div key={ i } className={ styles.card }>
+                                <span className={ styles.spanCard }>
+                                    {el.title}
+                                </span>
+                                <img className={ styles.img } src={ 
+                                    el.type === "Facultad" ? Facultad : 
+                                    el.type === "Trabajo" ? Trabajo :  
+                                    el.type === "Salud" ? Salud : Proyectos
+                                } alt="" />
+                            </div>
+                        </Link>
+                        
                     )
                 })
             }
