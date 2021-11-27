@@ -5,10 +5,10 @@ import styles from './Filters.module.css'
 export default function Filters() {
     return (
         <div className={ styles.divPrincipal }>
-            <span className={ styles.span }>Facultad</span>
-            <span className={ styles.span }>Trabajo</span>
-            <span className={ styles.span }>Proyectos</span>
-            <span className={ styles.span }>Salud</span>
+            <button className={ styles.button }>Facultad</button>
+            <button className={ styles.button }>Trabajo</button>
+            <button className={ styles.button }>Proyectos</button>
+            <button className={ styles.button }>Salud</button>
         </div>
     )
 }

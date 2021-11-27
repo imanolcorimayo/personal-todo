@@ -1,18 +1,24 @@
 .divPrincipal {
+    display: flex;
+    justify-content: center;
     width: 85vw;
     height: 6vh;
     margin: auto;
     border-bottom: 1px solid black;
 }
 
-.span{
+.button{
     height: 6vh;
     padding: 10px 15px;
     position: relative;
-    top: 15px;
-    border-radius: 5px;
+    top: 0px;
+    font-size: 15px;
+    border-radius: 3px;
+    background: none;
+    box-shadow: none;
+    border: none;
 }
 
-.span:hover{
+.button:hover{
     background-color: rgb(112, 224, 0);
 }

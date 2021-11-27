@@ -9,7 +9,7 @@ import Cards from './Cards/Cards'
 export default function Body() {
     return (
         <div className={ styles.divPrincipal }>
-            <Filters></Filters>
+            <Filters className={ styles.filters }></Filters>
             <Cards></Cards>
         </div>
     )
