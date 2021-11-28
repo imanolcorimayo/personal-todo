@@ -6,6 +6,8 @@ import { Route, Routes } from 'react-router-dom'
 import Details from './components/Details/Details';
 import Add from './components/Add/Add';
 
+import './firebase'
+
 function App() {
   return (
     <div >

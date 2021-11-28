@@ -20,7 +20,6 @@ function Details(props) {
 
     useEffect(()=> {
         props.getTask(id)
-        console.log(id, props.task)
         // eslint-disable-next-line
     }, [])
 

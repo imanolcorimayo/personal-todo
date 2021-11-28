@@ -88,7 +88,6 @@ function rootReducer(state = initialState, action) {
         return state
     } else
     if (action.type === GET_TASK) {
-        console.log("reducer: ", action.payload)
         let response= state.tasks.filter((el) => JSON.parse(el.id + "" === ""+action.payload))
         return {
             ...state,
