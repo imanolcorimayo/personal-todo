@@ -1,4 +1,4 @@
-import { GET_TASKS, GET_TASK, ADD_TASK, CHANGE_TO_DOING, CHANGE_TO_DONE, SHOW_TO_DO, SHOW_DOING, SHOW_DONE, CHANGE_TO_TODO } from '../constants.js'
+import { GET_TASKS, GET_TASK, ADD_TASK, CHANGE_TO_DOING, CHANGE_TO_DONE, SHOW_TO_DO, SHOW_DOING, SHOW_DONE, CHANGE_TO_TODO, FILTER } from '../constants.js'
 
 const initialState = {
     tasks: [
@@ -79,7 +79,7 @@ const initialState = {
     ],
     tasksShows: [],
     task: {},
-    type: "To Do"
+    type: "todo"
 };
 
 function rootReducer(state = initialState, action) {
@@ -100,12 +100,12 @@ function rootReducer(state = initialState, action) {
     } else
     if (action.type === CHANGE_TO_TODO) {
         let response = state.tasks.map((el) => {
-            if(el.id + "" === ""+action.payload) return {...el, stateTask: "todo"}
+            if(el.id + "" === "" + action.payload) return {...el, stateTask: "todo"}
             return el
         })
         return {
             ...state,
-            tasks: response
+            tasks: response,
         }
     } else
     if (action.type === CHANGE_TO_DOING) {
@@ -135,7 +135,7 @@ function rootReducer(state = initialState, action) {
         } )
         return {
             ...state,
-            type: "To Do",
+            type: "todo",
             tasksShows: response,
         }
     } else 
@@ -143,7 +143,7 @@ function rootReducer(state = initialState, action) {
         let response = state.tasks.filter((el) => el.stateTask+"" === "doing")
         return {
             ...state, 
-            type: "Doing",
+            type: "doing",
             tasksShows: response,
         }
     } else 
@@ -151,9 +151,19 @@ function rootReducer(state = initialState, action) {
         let response = state.tasks.filter((el) => el.stateTask+"" === "done")
         return {
             ...state, 
-            type: "Done",
+            type: "done",
             tasksShows: response,
         }
+    } else {
+    if(action.type === FILTER) {
+        let response = state.tasks.filter( (el) =>{
+            return (el.stateTask+"" === ""+action.payload[0]) && (el.type.toLocaleLowerCase()+"" === ""+action.payload[1])
+        })
+        return {
+            ...state,
+            tasksShows: response
+        }
+    }
     }
     return state;
 }
