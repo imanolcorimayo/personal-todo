@@ -14,9 +14,10 @@ function Home(props) {
     return (
         <div className={ styles.divPrincipal }>
             <div className= { styles.barTitle }>
-                <h1 className={ styles.h1 }>{ props.type }</h1>
+                <h1 className={ styles.h1 }>{ props.type === "todo" ? "To Do":
+                                            props.type === "doing" ? "Doing": "Done" }</h1>
                 {
-                    props.type === "To Do" ? (
+                    props.type === "todo" ? (
                         <Link to="/personal-todo/add">
                             <span className={ styles.add }>
                                 <i className="fas fa-plus-circle"></i>
