@@ -1,4 +1,4 @@
-import { GET_TASKS, GET_TASK, ADD_TASK, CHANGE_TO_DOING, CHANGE_TO_DONE, SHOW_TO_DO, SHOW_DOING, SHOW_DONE } from '../constants.js'
+import { GET_TASKS, GET_TASK, ADD_TASK, CHANGE_TO_DOING, CHANGE_TO_DONE, SHOW_TO_DO, SHOW_DOING, SHOW_DONE, CHANGE_TO_TODO } from '../constants.js'
 
 // export function getPokemons() {
 //     return function(dispatch) {
@@ -23,11 +23,15 @@ export function addTask(payload) {
 }
 
 export function changeToDoing(payload) {
-  return { type: CHANGE_TO_DONE, payload}
+  return { type: CHANGE_TO_DOING, payload}
 }
 
 export function changeToDone(payload) {
-  return { type: CHANGE_TO_DOING, payload}
+  return { type: CHANGE_TO_DONE, payload}
+}
+
+export function changeToTodo(payload) {
+  return { type: CHANGE_TO_TODO, payload}
 }
 
 export function showTodo(payload) {

@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 import styles from "./Details.module.css"
 
 import { Link } from 'react-router-dom'
-import { getTask, showDoing, showDone, showTodo } from '../../redux/actions'
+import { changeToDoing, changeToDone, changeToTodo, getTask } from '../../redux/actions'
 
 import { connect } from 'react-redux'
 
@@ -25,12 +25,12 @@ function Details(props) {
     }, [])
 
     function setShows(element) {
-        if(element.target.type === "doing"){
-            props.setDoing()
-        } else if(element.target.type === "done"){
-            props.setDone()
+        if(element.target.name === "doing"){
+            props.setDoing(id)
+        } else if(element.target.name === "done"){
+            props.setDone(id)
         } else {
-            props.setTodo()
+            props.setTodo(id)
         }
     }
 
@@ -57,9 +57,9 @@ function Details(props) {
                     </div>
                 </div>
                 <div className={ styles.buttons }>
-                    <button onClick={ setShows } type="todo" className={ styles.button + " btn btn-primary"}>To Do</button>
-                    <button onClick={ setShows } type="doing" className={ styles.button + " btn btn-secondary"}>Doing</button>
-                    <button onClick={ setShows } type="done" className={ styles.button + " btn btn-success"}>Done</button>
+                    <button onClick={ setShows } name="todo" className={ styles.button + " btn btn-primary"}>To Do</button>
+                    <button onClick={ setShows } name="doing" className={ styles.button + " btn btn-secondary"}>Doing</button>
+                    <button onClick={ setShows } name="done" className={ styles.button + " btn btn-success"}>Done</button>
                 </div>
             
             </div>
@@ -76,9 +76,9 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch) {
     return {
         getTask: (taskId) => dispatch(getTask(taskId)),
-        setDoing: () => dispatch(showDoing()),
-        setDone: () => dispatch(showDone()),
-        setTodo: () => dispatch(showTodo()),
+        setDoing: (idTask) => dispatch(changeToDoing(idTask)),
+        setDone: (idTask) => dispatch(changeToDone(idTask)),
+        setTodo: (idTask) => dispatch(changeToTodo(idTask)),
     }
 }
 
