@@ -2,4 +2,76 @@
     width: 100%;
     height: 100vh;
     background-image: url(https://img.freepik.com/vector-gratis/fondo-hexagonal-oscuro-color-degradado_79603-1409.jpg?size=626&ext=jpg);
+    background-size: cover;
+    background-position-x: -200px;
+}
+
+.barTitle {
+    position: absolute;
+    width: 100vw;
+    height: 70px;
+    background: rgba(108, 182, 224, 0.85);
+}
+
+.leftArrow {
+    font-size: 45px;
+    position: relative;
+    top: 10px;
+    left: 15px;
+    color: #004D78;
+}
+
+.title {
+    position: relative;
+    left: 40px;
+    top: 2px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cuerpo {
+    position: relative;
+    background: rgba(255, 255, 255, 0.473);
+    backdrop-filter: blur(4px);
+    margin: auto;
+    top: 10vh;
+    width: 98vw;
+    height: 80vh;
+    border-radius: 30px;
+}
+
+.img {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 45px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 25vh;
+}
+
+.button{
+    width: 30vw;
+}
+
+.decription {
+    width: 100%;
+}
+
+.h2 {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.descriptionText{
+    padding: 15px;
+}
+
+.descriptionTextDiv {
+    overflow-y: scroll;
+    height: 40vh;
 }

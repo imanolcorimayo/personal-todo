@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import styles from './Cards.module.css'
+
+import { connect } from 'react-redux'
 
 import Facultad from '../../../img/facultad.svg'
 import Trabajo from '../../../img/trabajo.svg'
@@ -8,71 +10,26 @@ import Proyectos from '../../../img/proyectos.svg'
 import Salud from '../../../img/salud.svg'
 
 import { Link } from 'react-router-dom'
+import { showTodo } from '../../../redux/actions'
 
-export default function Cards() {
-    let arr = [
-        {
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-        },{
-            title: "Instalacion en nueva cordoba",
-            type: "Trabajo",
-            id: 15,
-        },{
-            title: "Armar SPA para Rotaract",
-            type: "Proyectos",
-            id: 15,
-        },{
-            title: "Correr 20km en 2 Semanas",
-            type: "Salud",
-            id: 15,
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-        },
-        {
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-        },{
-            title: "Instalacion en nueva cordoba",
-            type: "Trabajo",
-            id: 15,
-        },{
-            title: "Armar SPA para Rotaract",
-            type: "Proyectos",
-            id: 15,
-        },{
-            title: "Correr 20km en 2 Semanas",
-            type: "Salud",
-            id: 15,
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-        },
-    ]
+function Cards(props) {
+
+    useEffect(()=> {
+        props.showTodo()
+        // eslint-disable-next-line
+    },[])
+
     return (
         <div className={ styles.divPrincipal }>
             {
-                arr.map((el, i) => {
+                props.tasks?.map((el, i) => {
                     return (
-                        <Link className={ styles.link } to={ "Details/" + el.id}>
-                            <div key={ i } className={ styles.card }>
-                                <span className={ styles.spanCard }>
+                        <Link key={ "link" + i } className={ styles.link } to={ "Details/" + el.id}>
+                            <div key={ "div" + i } className={ styles.card }>
+                                <span key={ "span" + i } className={ styles.spanCard }>
                                     {el.title}
                                 </span>
-                                <img className={ styles.img } src={ 
+                                <img key={"img" + i} className={ styles.img } src={ 
                                     el.type === "Facultad" ? Facultad : 
                                     el.type === "Trabajo" ? Trabajo :  
                                     el.type === "Salud" ? Salud : Proyectos
@@ -86,3 +43,17 @@ export default function Cards() {
         </div>
     )
 }
+
+function mapStateToProps(state) {
+    return {
+        tasks: state.tasksShows,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        showTodo: () => dispatch(showTodo())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)
