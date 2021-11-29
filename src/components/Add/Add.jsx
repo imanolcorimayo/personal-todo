@@ -4,11 +4,26 @@ import styles from './Add.module.css'
 
 import { Link } from 'react-router-dom'
 
+import { collection, addDoc } from '@firebase/firestore'
+
+import { db } from '../../firebase'
+
 export default function Add() {
 
-    function addTask(ev){
+    async function addTask(ev){
         ev.preventDefault()
         console.log("holaa")
+        try {
+            const docRef = await addDoc(collection(db, "tasks"), {
+                title: "Parcial de álgebra 2",
+                type: "Facultad",
+                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
+                stateTask: "todo"
+              });
+              console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e)
+        }
     }
 
     return (
