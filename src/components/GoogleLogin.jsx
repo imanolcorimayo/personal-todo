@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase/index'
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
+import { useDispatch } from 'react-redux'
+
 import { FcGoogle } from 'react-icons/fc'
+import { HideModalLogin } from '../redux/actions'
 
 function GoogleLogin() {
     const [googleUser, setGoogleUser] = useState(null)
+
+    const dispatch = useDispatch()
 
     const handleClick = async (e) => {
 
@@ -19,6 +24,8 @@ function GoogleLogin() {
             console.log('google user...', user)
             console.log('access token: ', token)
             setGoogleUser(user)
+            dispatch(HideModalLogin(false))
+
         }).catch(error => {
             // Handle Errors here.
             console.log(error)
@@ -59,15 +66,20 @@ function GoogleLogin() {
     }, [googleUser])
 
     return (
-        <div
+        <div 
             onClick={handleClick}
             type="button"
-            className="btn btn-lg btn-github text-uppercase btn-outline col-lg-4"
-        // href="http://localhost:3001/user/auth/github"
-        >
-            <FcGoogle size="30px" />
+            className="d-grid gap-2">
+            <button className="btn btn-success"> login with google
+                <div
+                    className="btn btn-lg btn-github text-uppercase btn-outline col-lg-4"
+                >
+                    <FcGoogle size="30px" />
+                </div>
+            </button>
         </div>
-        
+
+
     )
 }
 

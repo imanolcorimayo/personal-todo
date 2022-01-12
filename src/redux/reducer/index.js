@@ -1,4 +1,15 @@
-import { GET_TASKS, GET_TASK, ADD_TASK, CHANGE_TO_DOING, CHANGE_TO_DONE, SHOW_TO_DO, SHOW_DOING, SHOW_DONE, CHANGE_TO_TODO, FILTER } from '../constants.js'
+import { 
+    GET_TASKS, 
+    GET_TASK, 
+    ADD_TASK, 
+    CHANGE_TO_DOING, 
+    CHANGE_TO_DONE, 
+    SHOW_TO_DO, 
+    SHOW_DOING, 
+    SHOW_DONE, 
+    CHANGE_TO_TODO, FILTER,
+    HIDE_MODAL_LOGIN, 
+} from '../constants.js'
 
 const initialState = {
     tasks: [
@@ -8,78 +19,12 @@ const initialState = {
             id: 15,
             description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
             stateTask: "todo",
-        },{
-            title: "Instalacion en nueva cordoba",
-            type: "Trabajo",
-            id: 16,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Armar SPA para Rotaract",
-            type: "Proyectos",
-            id: 17,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Correr 20km en 2 Semanas",
-            type: "Salud",
-            id: 18,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 19,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 20,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },
-        {
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 21,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Instalacion en nueva cordoba",
-            type: "Trabajo",
-            id: 22,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Armar SPA para Rotaract",
-            type: "Proyectos",
-            id: 23,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Correr 20km en 2 Semanas",
-            type: "Salud",
-            id: 24,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 25,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },{
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 26,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
         },
     ],
     tasksShows: [],
     task: {},
-    type: "todo"
+    type: "todo",
+    hideModalLogin: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -161,6 +106,12 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             tasksShows: response
+        }
+    }
+    if(action.type === HIDE_MODAL_LOGIN) {
+        return {
+            ...state,
+            hideModalLogin: action.payload
         }
     }
     }

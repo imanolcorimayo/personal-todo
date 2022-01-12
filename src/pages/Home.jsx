@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from './styles/Home.module.css'
 
@@ -18,14 +18,17 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
 
-    const { type } = useSelector(state => state)
+    const { type, hideModalLogin } = useSelector(state => state)
 
+    
     const [show, setShow] = useState(false);
-
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    // const dispatch = useDispatch()
+    
+    useEffect(() => {
+        setShow(hideModalLogin)
+    }, [hideModalLogin])
 
     return (
         <div className={styles.divPrincipal}>
@@ -40,9 +43,7 @@ export default function Home() {
                             <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <div className="d-grid gap-2">
-                                <button className="btn btn-success"> login with google <GoogleLogin></GoogleLogin></button>
-                            </div>
+                            <GoogleLogin></GoogleLogin>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
