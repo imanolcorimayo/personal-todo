@@ -6,6 +6,7 @@ import styles from './styles/Home.module.css'
 import NavBar from "../components/NavBar";
 import Body from "../components/Body";
 import GoogleLogin from "../components/GoogleLogin"
+import Menu from "../components/Menu";
 
 import { FiLogIn } from 'react-icons/fi'
 import Modal from 'react-bootstrap/Modal'
@@ -33,6 +34,7 @@ export default function Home() {
     return (
         <div className={styles.divPrincipal}>
             <div className={styles.barTitle}>
+                <Menu placement={"end"} name={"end"}></Menu>
                 <>
                         <div onClick={handleShow} className={styles.login_icon} >
                             <FiLogIn size="45px" color="#004D78" />
@@ -40,7 +42,7 @@ export default function Home() {
 
                     <Modal show={show} onHide={handleClose} animation={false}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Modal heading</Modal.Title>
+                            <Modal.Title>Sign in to get access to functionts</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <GoogleLogin></GoogleLogin>
