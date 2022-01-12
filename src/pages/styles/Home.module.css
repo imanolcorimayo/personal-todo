@@ -6,12 +6,6 @@
     background-position-x: -200px;
 }
 
-.barTitle {
-    position: absolute;
-    width: 100vw;
-    height: 70px;
-    background: rgba(108, 182, 224, 0.85);
-}
 
 .h1 {
     margin: 0px;
@@ -27,3 +21,16 @@
     top: 4px;
     right: 15px;
 }
+
+/* Bar title */
+
+.barTitle {
+    position: absolute;
+    width: 100vw;
+    height: 70px;
+    background: rgba(108, 182, 224, 0.85);
+}
+
+/* Login button */
+
+
