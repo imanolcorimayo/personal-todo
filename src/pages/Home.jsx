@@ -3,10 +3,10 @@ import React from "react";
 import styles from './styles/Home.module.css'
 
 // Components
-import NavBar from "../components/NavBar/NavBar";
-import Body from "../components/Body/Body";
+import NavBar from "../components/NavBar";
+import Body from "../components/Body";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export default function Home() {
 
     const { type } = useSelector(state => state)
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     return (
         <div className={ styles.divPrincipal }>

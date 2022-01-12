@@ -1,10 +1,10 @@
 import React from 'react'
 
-import styles from './Body.module.css'
+import styles from './styles/Body.module.css'
 
 // Components 
-import Filters from './Filters/Filters'
-import Cards from './Cards/Cards'
+import Filters from './Filters'
+import Cards from './Cards'
 
 export default function Body() {
     return (

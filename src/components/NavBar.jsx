@@ -1,25 +1,27 @@
 import React from 'react'
 
-import styles from './NavBar.module.css'
+import styles from './styles/NavBar.module.css'
 
-import todo from '../../img/check-square-solid.svg'
-import doing from '../../img/snowboarding-solid.svg'
-import done from '../../img/th-list-solid.svg'
+import todo from '../img/check-square-solid.svg'
+import doing from '../img/snowboarding-solid.svg'
+import done from '../img/th-list-solid.svg'
 
-import { connect } from 'react-redux'
-import { showDoing, showDone, showTodo } from '../../redux/actions'
+import  { useDispatch } from 'react-redux'
+import { showDoing, showDone, showTodo } from '../redux/actions'
 
-function NavBar(props) {
+export default function NavBar() {
+
+    const dispatch = useDispatch()
 
     function modifyingShows(el){
         if(el.target.id==="todo"){
-            props.showTodo()
+            dispatch(showTodo())
         } else
         if(el.target.id==="doing"){
-            props.showDoing()
+            dispatch(showDoing())
         } else
         if(el.target.id==="done"){
-            props.showDone()
+            dispatch(showDone())
         }
 
     }
@@ -41,13 +43,3 @@ function NavBar(props) {
         </div>
     )
 }
-
-function mapDispatchToProps(dispatch) {
-    return {
-        showDoing: () => dispatch(showDoing()),
-        showDone: () => dispatch(showDone()),
-        showTodo: () => dispatch(showTodo()),
-    }
-}
-
-export default connect(null, mapDispatchToProps)(NavBar)

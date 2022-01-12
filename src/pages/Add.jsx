@@ -1,12 +1,12 @@
 import React from 'react'
 
-import styles from './Add.module.css'
+import styles from './styles/Add.module.css'
 
 import { Link } from 'react-router-dom'
 
 import { collection, addDoc } from '@firebase/firestore'
 
-import { db } from '../../firebase/index'
+import { db } from '../firebase/index'
 
 export default function Add() {
 
@@ -14,7 +14,7 @@ export default function Add() {
         ev.preventDefault()
         try {
             const docRef = await addDoc(collection(db, "tasks"), {
-                title: "Parcial de álgebra 2",
+                title: "Parcial 8465132 de álgebra 2",
                 type: "Facultad",
                 description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
                 stateTask: "todo"

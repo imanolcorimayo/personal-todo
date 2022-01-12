@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 
 import { useParams } from 'react-router'
 
-import styles from "./Details.module.css"
+import styles from "./styles/Details.module.css"
 
 import { Link } from 'react-router-dom'
-import { changeToDoing, changeToDone, changeToTodo, getTask } from '../../redux/actions'
+import { changeToDoing, changeToDone, changeToTodo, getTask } from '../redux/actions'
 
 import { connect } from 'react-redux'
 
-import Facultad from '../../img/facultad.svg'
-import Trabajo from '../../img/trabajo.svg'
-import Proyectos from '../../img/proyectos.svg'
-import Salud from '../../img/salud.svg'
+import Facultad from '../img/facultad.svg'
+import Trabajo from '../img/trabajo.svg'
+import Proyectos from '../img/proyectos.svg'
+import Salud from '../img/salud.svg'
 
 function Details(props) {
 

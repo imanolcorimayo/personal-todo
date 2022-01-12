@@ -1,10 +1,10 @@
 import './App.css';
 
-import Home from './components/Home/Home';
+import Home from './pages/Home';
 
 import { Route, Routes } from 'react-router-dom'
-import Details from './components/Details/Details';
-import Add from './components/Add/Add';
+import Details from './components/Details';
+import Add from './pages/Add';
 
 import './firebase'
 

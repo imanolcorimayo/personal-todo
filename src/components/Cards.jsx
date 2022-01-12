@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 
-import styles from './Cards.module.css'
+import styles from './styles/Cards.module.css'
 
 import { connect } from 'react-redux'
 
-import Facultad from '../../../img/facultad.svg'
-import Trabajo from '../../../img/trabajo.svg'
-import Proyectos from '../../../img/proyectos.svg'
-import Salud from '../../../img/salud.svg'
+import Facultad from '../img/facultad.svg'
+import Trabajo from '../img/trabajo.svg'
+import Proyectos from '../img/proyectos.svg'
+import Salud from '../img/salud.svg'
 
 import { Link } from 'react-router-dom'
-import { showTodo } from '../../../redux/actions'
+import { showTodo } from '../redux/actions'
 
 function Cards(props) {
 
