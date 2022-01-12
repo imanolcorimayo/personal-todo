@@ -8,7 +8,8 @@ import {
     SHOW_DOING, 
     SHOW_DONE, 
     CHANGE_TO_TODO, FILTER,
-    HIDE_MODAL_LOGIN, 
+    HIDE_MODAL_LOGIN,
+    GLOBAL_LOCAL_STORAGE, 
 } from '../constants.js'
 
 const initialState = {
@@ -112,6 +113,12 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             hideModalLogin: action.payload
+        }
+    }
+    if(action.type === GLOBAL_LOCAL_STORAGE) {
+        return {
+            ...state,
+            ...action.payload
         }
     }
     }

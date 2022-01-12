@@ -8,7 +8,9 @@ import { GET_TASKS,
   SHOW_DONE, 
   CHANGE_TO_TODO, 
   FILTER,
-  HIDE_MODAL_LOGIN } from '../constants.js'
+  HIDE_MODAL_LOGIN,
+  GLOBAL_LOCAL_STORAGE,
+ } from '../constants.js'
 
 // export function getPokemons() {
 //     return function(dispatch) {
@@ -60,6 +62,15 @@ export function filter(payload) {
   return { type: FILTER, payload}
 }
 
+// funcion para ocultar modal del login cuando loguea
 export function HideModalLogin(payload) {
   return { type: HIDE_MODAL_LOGIN, payload}
+}
+
+// funcion para manejar datos del localStorage globalmente
+export function setToGlobalStorage(data) {
+  return {
+    type: GLOBAL_LOCAL_STORAGE,
+    payload: data,
+  };
 }

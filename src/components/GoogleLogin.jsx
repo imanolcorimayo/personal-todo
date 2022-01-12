@@ -7,8 +7,12 @@ import { useDispatch } from 'react-redux'
 import { FcGoogle } from 'react-icons/fc'
 import { HideModalLogin } from '../redux/actions'
 
+import { useGlobalStorage } from '../hook/useGlobalStorage'
+
 function GoogleLogin() {
     const [googleUser, setGoogleUser] = useState(null)
+
+    const [user, setUser] = useGlobalStorage("user", "")
 
     const dispatch = useDispatch()
 
@@ -37,33 +41,25 @@ function GoogleLogin() {
         const setGoogleLog = async () => {
             if (googleUser !== null) {
                 const res = googleUser.providerData[0]
-                console.log('userrrrr', res)
-                const nameUser = res.displayName.split(' ')
-                const newuser = {
+                console.log('userrrrr ress', res)
+                const newUser = {
                     userName: res.email,
-                    firstName: nameUser[0],
-                    lastName: nameUser[1],
+                    name: res.displayName,
                     email: res.email,
-                    dni: '',
-                    password: '',
-                    repeatPassword: '',
-                    professionalCase: false,
-                    professional: "false",
-                    city: '',
                     photo: res.photoURL,
-                    profession: "",
                     phone: res.phoneNumber ? res.phoneNumber : '',
-                    profession: '',
                     verified: googleUser.emailVerified,
-                    certification_name: "",
-                    certification_img: "",
-                    status: "",
                 }
+                setUser(newUser)
             }
         }
         setGoogleLog()
 
     }, [googleUser])
+
+    useEffect(() => {
+        console.log("Userrrrrrrrrrrrrrrrrr----", user)
+    }, [user])
 
     return (
         <div 
