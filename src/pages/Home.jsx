@@ -1,23 +1,29 @@
 import React from "react";
 
-import styles from './Home.module.css'
+import styles from './styles/Home.module.css'
 
 // Components
-import NavBar from "../NavBar/NavBar";
-import Body from "../Body/Body";
+import NavBar from "../components/NavBar/NavBar";
+import Body from "../components/Body/Body";
 
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from "react-router-dom";
 
-function Home(props) {
+
+export default function Home() {
+
+    const { type } = useSelector(state => state)
+
+    const dispatch = useDispatch()
+
     return (
         <div className={ styles.divPrincipal }>
             <div className= { styles.barTitle }>
-                <h1 className={ styles.h1 }>{ props.type === "todo" ? "To Do":
-                                            props.type === "doing" ? "Doing": "Done" }</h1>
+                <h1 className={ styles.h1 }>{ type === "todo" ? "To Do":
+                                            type === "doing" ? "Doing": "Done" }</h1>
                 {
-                    props.type === "todo" ? (
+                    type === "todo" ? (
                         <Link to="/personal-todo/add">
                             <span className={ styles.add }>
                                 <i className="fas fa-plus-circle"></i>
@@ -31,11 +37,3 @@ function Home(props) {
         </div>
     )
 }
-
-function mapStateToProps(state) {
-    return {
-        type: state.type,
-    }
-}
-
-export default connect(mapStateToProps, null)(Home)

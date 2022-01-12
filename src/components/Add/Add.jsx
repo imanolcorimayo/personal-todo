@@ -6,13 +6,12 @@ import { Link } from 'react-router-dom'
 
 import { collection, addDoc } from '@firebase/firestore'
 
-import { db } from '../../firebase'
+import { db } from '../../firebase/index'
 
 export default function Add() {
 
     async function addTask(ev){
         ev.preventDefault()
-        console.log("holaa")
         try {
             const docRef = await addDoc(collection(db, "tasks"), {
                 title: "Parcial de álgebra 2",
