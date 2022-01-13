@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from './styles/Home.module.css'
 
@@ -8,13 +8,25 @@ import Body from "../components/Body";
 import Menu from "../components/Menu";
 
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getTasks, showTodo } from "../redux/actions";
 
 
 
 export default function Home() {
 
-    const { type } = useSelector(state => state)
+    const { type, tasks } = useSelector(state => state)
+
+    useEffect(() => {
+        console.log("Tasks=", tasks)
+    }, [tasks])
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getTasks())
+        dispatch(showTodo())
+    }, [dispatch])
 
     return (
         <div className={styles.divPrincipal}>

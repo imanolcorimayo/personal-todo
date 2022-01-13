@@ -1,3 +1,7 @@
+// Firebase
+import { db } from '../../firebase/index'
+import { getDocs, collection } from "firebase/firestore";
+
 import { GET_TASKS, 
   GET_TASK, 
   ADD_TASK, 
@@ -12,18 +16,25 @@ import { GET_TASKS,
   GLOBAL_LOCAL_STORAGE,
  } from '../constants.js'
 
-// export function getPokemons() {
-//     return function(dispatch) {
-//       return fetch('http://localhost:3001/pokemons')
-//         .then(response => response.json())
-//         .then(json => {
-//           dispatch({ type: GET_POKEMONS, payload: json });
-//         }).catch(err => console.log(err));
-//     };
-//   }
-  
-export function getTasks(payload) {
-  return { type: GET_TASKS, payload}
+// get tasks data from firebase
+export function getTasks() {
+  return async function (dispatch) {
+    try {
+      const dataFirebase = await getDocs(collection(db, "tasks"))
+      const data= [] 
+      dataFirebase.forEach(doc => {
+        data.push(doc.data())
+      })
+      dispatch(
+        {
+          type: GET_TASKS,
+          payload: data,
+        }
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export function getTask(payload) {

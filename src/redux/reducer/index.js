@@ -13,15 +13,7 @@ import {
 } from '../constants.js'
 
 const initialState = {
-    tasks: [
-        {
-            title: "Parcial de álgebra 2",
-            type: "Facultad",
-            id: 15,
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus aspernatur totam consectetur eveniet, pariatur repudiandae commodi ipsa reiciendis dolor nihil est dolorem fugit quas. Perspiciatis libero similique animi ipsa fuga.",
-            stateTask: "todo",
-        },
-    ],
+    tasks: [],
     tasksShows: [],
     task: {},
     type: "todo",
@@ -31,10 +23,13 @@ const initialState = {
 function rootReducer(state = initialState, action) {
     
     if (action.type === GET_TASKS) {
-        return state
+        return {
+            ...state,
+            tasks: action.payload
+        }
     } else
     if (action.type === GET_TASK) {
-        let response= state.tasks.filter((el) => JSON.parse(el.id + "" === ""+action.payload))
+        let response= state.tasks?.filter((el) => JSON.parse(el.id + "" === ""+action.payload))
         return {
             ...state,
             task: response,
