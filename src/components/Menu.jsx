@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
+// Firebase
+import { getAuth, signOut } from 'firebase/auth'
+
+// Components
 import GoogleLogin from "../components/GoogleLogin"
 
+// Styles
 import s from "./styles/Menu.module.css"
 
 import Modal from 'react-bootstrap/Modal'
@@ -9,14 +14,29 @@ import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 
 import { FiLogIn } from 'react-icons/fi'
+import { FiLogOut } from 'react-icons/fi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { BiAddToQueue } from 'react-icons/bi'
 
+// Redux and Router
 import { useSelector } from 'react-redux'
-
 import { useNavigate } from 'react-router'
+import { useGlobalStorage } from '../hook/useGlobalStorage'
+
 
 export default function Menu({ name, ...props }) {
+
+  const [user, setUser] = useGlobalStorage("user", "")
+
+  useEffect(() => {
+    const auth = getAuth()
+    const userConfirmation = auth.currentUser;
+
+    if (!userConfirmation) return setUser("")
+    return () => {
+    }
+  }, [])
+
 
   const { hideModalLogin } = useSelector(state => state)
 
@@ -41,6 +61,17 @@ export default function Menu({ name, ...props }) {
     navigate("/personal-todo/add")
   }
 
+  async function logOut() {
+    const auth = getAuth();
+    try {
+      await signOut(auth)
+      navigate("/personal-todo/")
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
   return (
     <div className={ s.container }>
       <button onClick={handleShowMenu} className="me-2 btn">
@@ -57,8 +88,18 @@ export default function Menu({ name, ...props }) {
             </button>
           </div>
           <div className={s.container_buttons_below + " d-grid gap-2"}>
-            <p>Sign in</p>
-            <button className='btn btn-outline-secondary' onClick={handleShow}><FiLogIn size="25px" color="#004D78" /> sign in</button>
+            {
+              user ? 
+              <>
+              <p>Sign in</p>
+              <button className='btn btn-outline-secondary' onClick={handleShow}><FiLogIn size="25px" color="#004D78" /> sign in</button>
+              </> : 
+              <>
+              <p>Sign out</p>
+              <button className='btn btn-outline-secondary' onClick={logOut}><FiLogOut size="25px" color="#004D78" /> sign out</button>
+              </>
+              
+            }
             <p>Know developer</p>
             <button className='btn btn-outline-secondary'>Git Hub</button>
             <button className='btn btn-outline-secondary'>LinkedIn</button>
