@@ -3,3 +3,7 @@
     width: 60%;
     bottom: 30px;
 }
+
+.container_buttons_below_button {
+    text-decoration: none;
+}
