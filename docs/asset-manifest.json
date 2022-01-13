@@ -1,17 +1,15 @@
 {
   "files": {
-    "main.css": "/personal-todo/static/css/main.38016d0b.chunk.css",
-    "main.js": "/personal-todo/static/js/main.ad4d3654.chunk.js",
-    "main.js.map": "/personal-todo/static/js/main.ad4d3654.chunk.js.map",
-    "runtime-main.js": "/personal-todo/static/js/runtime-main.4c8119d0.js",
-    "runtime-main.js.map": "/personal-todo/static/js/runtime-main.4c8119d0.js.map",
-    "static/js/2.bda23ab9.chunk.js": "/personal-todo/static/js/2.bda23ab9.chunk.js",
-    "static/js/2.bda23ab9.chunk.js.map": "/personal-todo/static/js/2.bda23ab9.chunk.js.map",
-    "static/js/3.bece0840.chunk.js": "/personal-todo/static/js/3.bece0840.chunk.js",
-    "static/js/3.bece0840.chunk.js.map": "/personal-todo/static/js/3.bece0840.chunk.js.map",
+    "main.css": "/personal-todo/static/css/main.6fc9b410.chunk.css",
+    "main.js": "/personal-todo/static/js/main.679bbc83.chunk.js",
+    "main.js.map": "/personal-todo/static/js/main.679bbc83.chunk.js.map",
+    "runtime-main.js": "/personal-todo/static/js/runtime-main.e6be97f1.js",
+    "runtime-main.js.map": "/personal-todo/static/js/runtime-main.e6be97f1.js.map",
+    "static/js/2.8a645b9d.chunk.js": "/personal-todo/static/js/2.8a645b9d.chunk.js",
+    "static/js/2.8a645b9d.chunk.js.map": "/personal-todo/static/js/2.8a645b9d.chunk.js.map",
     "index.html": "/personal-todo/index.html",
-    "static/css/main.38016d0b.chunk.css.map": "/personal-todo/static/css/main.38016d0b.chunk.css.map",
-    "static/js/2.bda23ab9.chunk.js.LICENSE.txt": "/personal-todo/static/js/2.bda23ab9.chunk.js.LICENSE.txt",
+    "static/css/main.6fc9b410.chunk.css.map": "/personal-todo/static/css/main.6fc9b410.chunk.css.map",
+    "static/js/2.8a645b9d.chunk.js.LICENSE.txt": "/personal-todo/static/js/2.8a645b9d.chunk.js.LICENSE.txt",
     "static/media/check-square-solid.f3a42b26.svg": "/personal-todo/static/media/check-square-solid.f3a42b26.svg",
     "static/media/facultad.31ab4286.svg": "/personal-todo/static/media/facultad.31ab4286.svg",
     "static/media/proyectos.beca8a53.svg": "/personal-todo/static/media/proyectos.beca8a53.svg",
@@ -21,9 +19,9 @@
     "static/media/trabajo.03a61b54.svg": "/personal-todo/static/media/trabajo.03a61b54.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.4c8119d0.js",
-    "static/js/2.bda23ab9.chunk.js",
-    "static/css/main.38016d0b.chunk.css",
-    "static/js/main.ad4d3654.chunk.js"
+    "static/js/runtime-main.e6be97f1.js",
+    "static/js/2.8a645b9d.chunk.js",
+    "static/css/main.6fc9b410.chunk.css",
+    "static/js/main.679bbc83.chunk.js"
   ]
 }
