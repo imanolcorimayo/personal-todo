@@ -38,7 +38,6 @@ export default function Cards(props) {
                                 } alt="" />
                             </div>
                         </Link>
-                        
                     )
                 })
             }
