@@ -1,6 +1,6 @@
 // Firebase
 import { db } from '../../firebase/index'
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, getDoc, collection, doc } from "firebase/firestore";
 
 import { GET_TASKS, 
   GET_TASK, 
@@ -23,7 +23,10 @@ export function getTasks() {
       const dataFirebase = await getDocs(collection(db, "tasks"))
       const data= [] 
       dataFirebase.forEach(doc => {
-        data.push(doc.data())
+        data.push({
+          ...doc.data(),
+          id: doc.id
+        })
       })
       dispatch(
         {
@@ -37,8 +40,25 @@ export function getTasks() {
   }
 }
 
-export function getTask(payload) {
-  return { type: GET_TASK, payload}
+export function getTask(id) {
+  return async function (dispatch) {
+    try {
+      const dataFirebase = await getDoc(doc(db, "tasks", id))
+      let data;
+      if (dataFirebase.exists()) {
+        data = dataFirebase.data()
+      } else {
+        data = "undefined task"
+      }
+
+      dispatch({
+        type: GET_TASK, 
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export function addTask(payload) {

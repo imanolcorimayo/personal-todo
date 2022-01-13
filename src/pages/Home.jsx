@@ -16,16 +16,16 @@ import { getTasks, showTodo } from "../redux/actions";
 export default function Home() {
 
     const { type, tasks } = useSelector(state => state)
-
-    useEffect(() => {
-        console.log("Tasks=", tasks)
-    }, [tasks])
-
     const dispatch = useDispatch()
+    
+    useEffect(() => {
+        dispatch(showTodo())
+        console.log("Tasks=", tasks)
+    }, [tasks, dispatch])
+
 
     useEffect(() => {
         dispatch(getTasks())
-        dispatch(showTodo())
     }, [dispatch])
 
     return (

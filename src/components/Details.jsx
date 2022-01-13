@@ -5,31 +5,38 @@ import { useParams } from 'react-router'
 import styles from "./styles/Details.module.css"
 
 import { Link } from 'react-router-dom'
-import { changeToDoing, changeToDone, changeToTodo, getTask } from '../redux/actions'
 
-import { connect } from 'react-redux'
+// Redux
+import { changeToDoing, changeToDone, changeToTodo, getTask } from '../redux/actions'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Facultad from '../img/facultad.svg'
 import Trabajo from '../img/trabajo.svg'
 import Proyectos from '../img/proyectos.svg'
 import Salud from '../img/salud.svg'
 
-function Details(props) {
+export default function Details() {
+
+    const dispatch = useDispatch()
+    const { task } = useSelector(state => state)
+
+    useEffect(() => {
+        console.log(task)
+    }, [task])
 
     let { id } = useParams()
 
     useEffect(()=> {
-        props.getTask(id)
-        // eslint-disable-next-line
-    }, [])
+        dispatch(getTask(id))
+    }, [dispatch, id])
 
     function setShows(element) {
         if(element.target.name === "doing"){
-            props.setDoing(id)
+            dispatch(changeToDoing(id))
         } else if(element.target.name === "done"){
-            props.setDone(id)
+            dispatch(changeToDone(id))
         } else {
-            props.setTodo(id)
+            dispatch(changeToTodo(id))
         }
     }
 
@@ -41,18 +48,18 @@ function Details(props) {
                         <i className="fas fa-angle-left"></i>
                     </span>
                 </Link>
-                <span className={ styles.title }>{ props.task[0]?.title }</span>
+                <span className={ styles.title }>Title: { task?.title }</span>
                 <img className={ styles.img } src={ 
-                                    props.task[0]?.type === "Facultad" ? Facultad : 
-                                    props.task[0]?.type === "Trabajo" ? Trabajo :  
-                                    props.task[0]?.type === "Salud" ? Salud : Proyectos
+                                    task?.type === "Facultad" ? Facultad : 
+                                    task?.type === "Trabajo" ? Trabajo :  
+                                    task?.type === "Salud" ? Salud : Proyectos
                                 } alt="" />
             </div>
             <div className={ styles.cuerpo }>
                 <div className={ styles.decription }>
                     <h2 className={ styles.h2 }>Description</h2>
                     <div className={ styles.descriptionTextDiv }>
-                        <p className={ styles.descriptionText }>{ props.task[0]?.description }</p>
+                        <p className={ styles.descriptionText }>{ task?.description }</p>
                     </div>
                 </div>
                 <div className={ styles.buttons }>
@@ -65,21 +72,3 @@ function Details(props) {
         </div>
     )
 }
-
-function mapStateToProps(state){
-    return {
-        task: state.task,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        getTask: (taskId) => dispatch(getTask(taskId)),
-        setDoing: (idTask) => dispatch(changeToDoing(idTask)),
-        setDone: (idTask) => dispatch(changeToDone(idTask)),
-        setTodo: (idTask) => dispatch(changeToTodo(idTask)),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Details)
-

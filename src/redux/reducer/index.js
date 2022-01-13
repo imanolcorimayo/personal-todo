@@ -29,10 +29,9 @@ function rootReducer(state = initialState, action) {
         }
     } else
     if (action.type === GET_TASK) {
-        let response= state.tasks?.filter((el) => JSON.parse(el.id + "" === ""+action.payload))
         return {
             ...state,
-            task: response,
+            task: action.payload,
         }
     } else
     if (action.type === ADD_TASK) {
