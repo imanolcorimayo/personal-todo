@@ -54,8 +54,7 @@ function GoogleLogin() {
             }
         }
         setGoogleLog()
-
-    }, [googleUser])
+    }, [googleUser, setUser])
 
     useEffect(() => {
         console.log("Userrrrrrrrrrrrrrrrrr----", user)

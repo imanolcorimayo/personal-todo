@@ -30,7 +30,7 @@ export const useGlobalStorage = (key, defaultValue) => {
         if (state[keyGlobal]) {
             localStorage.setItem(keyGlobal, JSON.stringify(state[keyGlobal]));
         }
-    }, [key, state]);
+    }, [key, state, keyGlobal]);
   
     const setValue = (value) => {
     return dispatch(setToGlobalStorage({[keyGlobal]: value}))
