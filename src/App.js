@@ -3,7 +3,7 @@ import './App.css';
 import Home from './pages/Home';
 
 import { Route, Routes } from 'react-router-dom'
-import Details from './components/Details';
+import Details from './pages/Details';
 import Add from './pages/Add';
 
 import './firebase'

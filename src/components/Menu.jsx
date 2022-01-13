@@ -108,12 +108,12 @@ export default function Menu({ name, ...props }) {
             }
             <p>Know developer</p>
             {/* <a href="https://github.com/imanolcorimayo"> */}
-            <a className={ s.container_buttons_below_button } href="https://github.com/imanolcorimayo" target="_blank">
+            <a className={ s.container_buttons_below_button } href="https://github.com/imanolcorimayo" rel="noreferrer" target="_blank">
               <div className='d-grid gap-2'>
                 <button className='btn btn-outline-secondary' onClick="https://github.com/imanolcorimayo">Git Hub</button>
               </div>
             </a>
-            <a className={ s.container_buttons_below_button } href="https://www.linkedin.com/in/imanolcorimayo/" target="_blank">
+            <a className={ s.container_buttons_below_button } href="https://www.linkedin.com/in/imanolcorimayo/" rel="noreferrer" target="_blank">
               <div className='d-grid gap-2'>
                 <button className='btn btn-outline-secondary' onClick="https://github.com/imanolcorimayo">LinkedIn</button>
               </div>

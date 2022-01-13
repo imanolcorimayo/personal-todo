@@ -6,19 +6,26 @@ import styles from "./styles/Details.module.css"
 
 import { Link } from 'react-router-dom'
 
-// Redux
-import { changeToDoing, changeToDone, changeToTodo, getTask } from '../redux/actions'
+// Redux and Router
+import { getTask } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
 
 import Facultad from '../img/facultad.svg'
 import Trabajo from '../img/trabajo.svg'
 import Proyectos from '../img/proyectos.svg'
 import Salud from '../img/salud.svg'
 
+// Firebase
+import { doc, deleteDoc, setDoc } from 'firebase/firestore'
+import { db } from '../firebase'
+
 export default function Details() {
 
     const dispatch = useDispatch()
     const { task } = useSelector(state => state)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(task)
@@ -30,13 +37,33 @@ export default function Details() {
         dispatch(getTask(id))
     }, [dispatch, id])
 
-    function setShows(element) {
-        if(element.target.name === "doing"){
-            dispatch(changeToDoing(id))
-        } else if(element.target.name === "done"){
-            dispatch(changeToDone(id))
-        } else {
-            dispatch(changeToTodo(id))
+    async function setStateTask(e) {
+
+        try {
+            await setDoc(doc(db, "tasks", id), {
+                ...task,
+                stateTask: e.target.name
+            })
+            navigate("/personal-todo")
+        } catch (error) {
+            console.log(error)
+        }
+        
+        // if(element.target.name === "doing"){
+        //     dispatch(changeToDoing(id))
+        // } else if(element.target.name === "done"){
+        //     dispatch(changeToDone(id))
+        // } else {
+        //     dispatch(changeToTodo(id))
+        // }
+    }
+
+    async function deleteTask() {
+        try {
+            await deleteDoc(doc(db, "tasks", id))
+            navigate("/personal-todo")
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -63,9 +90,10 @@ export default function Details() {
                     </div>
                 </div>
                 <div className={ styles.buttons }>
-                    <button onClick={ setShows } name="todo" className={ styles.button + " btn btn-primary"}>To Do</button>
-                    <button onClick={ setShows } name="doing" className={ styles.button + " btn btn-secondary"}>Doing</button>
-                    <button onClick={ setShows } name="done" className={ styles.button + " btn btn-success"}>Done</button>
+                    <button onClick={ setStateTask } name="todo" className={ styles.button + " btn btn-primary"}>To Do</button>
+                    <button onClick={ setStateTask } name="doing" className={ styles.button + " btn btn-secondary"}>Doing</button>
+                    <button onClick={ setStateTask } name="done" className={ styles.button + " btn btn-success"}>Done</button>
+                    <button onClick={ deleteTask } name="done" className={ styles.button + " btn btn-danger"}>Delete</button>
                 </div>
             
             </div>
