@@ -2,27 +2,29 @@ import React, { useEffect } from 'react'
 
 import styles from './styles/Cards.module.css'
 
-import { connect } from 'react-redux'
-
 import Facultad from '../img/facultad.svg'
 import Trabajo from '../img/trabajo.svg'
 import Proyectos from '../img/proyectos.svg'
 import Salud from '../img/salud.svg'
 
+import { useSelector, useDispatch } from 'react-redux'
+
 import { Link } from 'react-router-dom'
 import { showTodo } from '../redux/actions'
 
-function Cards(props) {
+export default function Cards(props) {
+
+    const { tasksShows } = useSelector(state => state)
+    const dispatch = useDispatch();
 
     useEffect(()=> {
-        props.showTodo()
-        // eslint-disable-next-line
-    },[])
+        dispatch(showTodo())
+    },[dispatch])
 
     return (
         <div className={ styles.divPrincipal }>
             {
-                props.tasks?.map((el, i) => {
+                tasksShows?.map((el, i) => {
                     return (
                         <Link key={ "link" + i } className={ styles.link } to={ "Details/" + el.id}>
                             <div key={ "div" + i } className={ styles.card }>
@@ -43,17 +45,3 @@ function Cards(props) {
         </div>
     )
 }
-
-function mapStateToProps(state) {
-    return {
-        tasks: state.tasksShows,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        showTodo: () => dispatch(showTodo())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cards)
