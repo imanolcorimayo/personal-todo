@@ -2,12 +2,10 @@ import {
     GET_TASKS, 
     GET_TASK, 
     ADD_TASK, 
-    CHANGE_TO_DOING, 
-    CHANGE_TO_DONE, 
     SHOW_TO_DO, 
     SHOW_DOING, 
     SHOW_DONE, 
-    CHANGE_TO_TODO, FILTER,
+    FILTER,
     HIDE_MODAL_LOGIN,
     GLOBAL_LOCAL_STORAGE, 
 } from '../constants.js'
