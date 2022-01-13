@@ -3,3 +3,12 @@
     width: 60%;
     bottom: 30px;
 }
+
+
+.add { 
+    font-size: 35px;
+    text-decoration: none;
+    color: #004D78;
+    top: 4px;
+    right: 15px;
+}

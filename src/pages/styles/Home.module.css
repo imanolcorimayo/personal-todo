@@ -8,23 +8,16 @@
 
 
 .h1 {
-    margin: 0px;
+    margin: auto;
     text-align: center;
-    padding: 0px;
-    margin-top: 20px;
-}
-
-.add { 
-    font-size: 45px;
-    color: #004D78;
-    position: absolute;
-    top: 4px;
-    right: 15px;
 }
 
 /* Bar title */
 
 .barTitle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     position: absolute;
     width: 100vw;
     height: 70px;

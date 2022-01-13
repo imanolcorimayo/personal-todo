@@ -10,14 +10,19 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 
 import { FiLogIn } from 'react-icons/fi'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { BiAddToQueue } from 'react-icons/bi'
 
 import { useSelector } from 'react-redux'
+
+import { useNavigate } from 'react-router'
 
 export default function Menu({ name, ...props }) {
 
   const { hideModalLogin } = useSelector(state => state)
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const navigate = useNavigate()
 
   const handleCloseMenu = () => setShowMenu(false);
   const handleShowMenu = () => setShowMenu(true);
@@ -32,17 +37,26 @@ export default function Menu({ name, ...props }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function navigates(){
+    navigate("/personal-todo/add")
+  }
+
   return (
-    <>
-      <Button variant="primary" onClick={handleShowMenu} className="me-2">
-        <GiHamburgerMenu></GiHamburgerMenu>
-      </Button>
+    <div className={ s.container }>
+      <button onClick={handleShowMenu} className="me-2 btn">
+        <GiHamburgerMenu size="30px"/>
+      </button>
       <Offcanvas show={showMenu} onHide={handleCloseMenu} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Menu of tools</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div className={ s.container_buttons_below + " d-grid gap-2" }>
+          <div className='d-grid gap-2'>
+            <button className='btn btn-outline-success' onClick={navigates} >
+              <BiAddToQueue size="30px"/> Add task
+            </button>
+          </div>
+          <div className={s.container_buttons_below + " d-grid gap-2"}>
             <p>Sign in</p>
             <button className='btn btn-outline-secondary' onClick={handleShow}><FiLogIn size="25px" color="#004D78" /> sign in</button>
             <p>Know developer</p>
@@ -66,6 +80,6 @@ export default function Menu({ name, ...props }) {
           </>
         </Offcanvas.Body>
       </Offcanvas>
-    </>
+    </div>
   )
 }
