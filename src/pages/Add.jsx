@@ -8,6 +8,8 @@ import { collection, addDoc } from '@firebase/firestore'
 
 import { db } from '../firebase/index'
 
+import { useNavigate } from 'react-router'
+
 export default function Add() {
 
     const [form, setForm] = useState({
@@ -15,6 +17,8 @@ export default function Add() {
         type: "",
         description: "",
     })
+
+    const navigate = useNavigate()
 
     async function addTask(ev){
         ev.preventDefault()
@@ -24,6 +28,7 @@ export default function Add() {
                 stateTask: "todo"
               });
               console.log("Document written with ID: ", docRef.id);
+              navigate("/personal-todo")
         } catch (e) {
             console.error("Error adding document: ", e)
         }
