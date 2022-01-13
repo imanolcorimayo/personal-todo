@@ -36,37 +36,6 @@ function rootReducer(state = initialState, action) {
     } else
     if (action.type === ADD_TASK) {
         
-    } else
-    if (action.type === CHANGE_TO_TODO) {
-        let response = state.tasks.map((el) => {
-            if(el.id + "" === "" + action.payload) return {...el, stateTask: "todo"}
-            return el
-        })
-        return {
-            ...state,
-            tasks: response,
-        }
-    } else
-    if (action.type === CHANGE_TO_DOING) {
-
-        let response = state.tasks.map((el) => {
-            if(el.id + "" === ""+action.payload) return {...el, stateTask: "doing"}
-            return el
-        })
-        return {
-            ...state,
-            tasks: response
-        }
-    } else
-    if (action.type === CHANGE_TO_DONE) {
-        let response = state.tasks.map((el) => {
-            if(el.id + "" === ""+action.payload) return {...el, stateTask: "done"}
-            return el
-        })
-        return {
-            ...state,
-            tasks: response
-        }
     } else 
     if (action.type === SHOW_TO_DO) {
         let response = state.tasks.filter((el) => {

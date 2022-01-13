@@ -5,12 +5,9 @@ import { getDocs, getDoc, collection, doc } from "firebase/firestore";
 import { GET_TASKS, 
   GET_TASK, 
   ADD_TASK, 
-  CHANGE_TO_DOING, 
-  CHANGE_TO_DONE, 
   SHOW_TO_DO, 
   SHOW_DOING, 
   SHOW_DONE, 
-  CHANGE_TO_TODO, 
   FILTER,
   HIDE_MODAL_LOGIN,
   GLOBAL_LOCAL_STORAGE,
@@ -63,18 +60,6 @@ export function getTask(id) {
 
 export function addTask(payload) {
   return { type: ADD_TASK, payload}
-}
-
-export function changeToDoing(payload) {
-  return { type: CHANGE_TO_DOING, payload}
-}
-
-export function changeToDone(payload) {
-  return { type: CHANGE_TO_DONE, payload}
-}
-
-export function changeToTodo(payload) {
-  return { type: CHANGE_TO_TODO, payload}
 }
 
 export function showTodo(payload) {

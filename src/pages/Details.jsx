@@ -48,14 +48,6 @@ export default function Details() {
         } catch (error) {
             console.log(error)
         }
-        
-        // if(element.target.name === "doing"){
-        //     dispatch(changeToDoing(id))
-        // } else if(element.target.name === "done"){
-        //     dispatch(changeToDone(id))
-        // } else {
-        //     dispatch(changeToTodo(id))
-        // }
     }
 
     async function deleteTask() {
