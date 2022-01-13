@@ -32,9 +32,14 @@ export default function Menu({ name, ...props }) {
     const auth = getAuth()
     const userConfirmation = auth.currentUser;
 
-    if (!userConfirmation) return setUser("")
-    return () => {
+    console.log(auth.currentUser)
+    console.log(auth)
+    console.log(userConfirmation)
+
+    if (!userConfirmation) {
+      setUser("")
     }
+    // eslint-disable-next-line
   }, [])
 
 
@@ -65,7 +70,8 @@ export default function Menu({ name, ...props }) {
     const auth = getAuth();
     try {
       await signOut(auth)
-      navigate("/personal-todo/")
+      setUser("")
+      setShowMenu(false)
     } catch (error) {
       console.log(error)
     }
@@ -89,16 +95,16 @@ export default function Menu({ name, ...props }) {
           </div>
           <div className={s.container_buttons_below + " d-grid gap-2"}>
             {
-              user ? 
-              <>
-              <p>Sign in</p>
-              <button className='btn btn-outline-secondary' onClick={handleShow}><FiLogIn size="25px" color="#004D78" /> sign in</button>
-              </> : 
-              <>
-              <p>Sign out</p>
-              <button className='btn btn-outline-secondary' onClick={logOut}><FiLogOut size="25px" color="#004D78" /> sign out</button>
-              </>
-              
+              user ?
+                <>
+                  <p>Sign out</p>
+                  <button className='btn btn-outline-secondary' onClick={logOut}><FiLogOut size="25px" color="#004D78" /> sign out</button>
+                </> :
+                <>
+                  <p>Sign in</p>
+                  <button className='btn btn-outline-secondary' onClick={handleShow}><FiLogIn size="25px" color="#004D78" /> sign in</button>
+                </>
+
             }
             <p>Know developer</p>
             <button className='btn btn-outline-secondary'>Git Hub</button>

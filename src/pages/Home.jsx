@@ -20,11 +20,9 @@ export default function Home() {
     const dispatch = useDispatch()
 
     const [user,] = useGlobalStorage("user", "")
-    console.log(user.photo)
     
     useEffect(() => {
         dispatch(showTodo())
-        console.log("Tasks=", tasks)
     }, [tasks, dispatch])
 
 

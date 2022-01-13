@@ -16,6 +16,7 @@ export const useGlobalStorage = (key, defaultValue) => {
     const keyGlobal = key + "GlobalStorage"
     const actualValue = getStorageValue(keyGlobal, defaultValue);
     const state = useSelector( state => state )
+    const returnedValue = useSelector ( state => state[keyGlobal])
     const dispatch=useDispatch()
 
     // If value doesn't exist on localStorage, save value
@@ -27,14 +28,14 @@ export const useGlobalStorage = (key, defaultValue) => {
     }
   
     useEffect(() => {
-        if (state[keyGlobal]) {
-            localStorage.setItem(keyGlobal, JSON.stringify(state[keyGlobal]));
-        }
-    }, [key, state, keyGlobal]);
+        // if (state[keyGlobal]) {
+        localStorage.setItem(keyGlobal, JSON.stringify(state[keyGlobal]));
+        // }
+    }, [key, state, returnedValue, keyGlobal]);
   
     const setValue = (value) => {
     return dispatch(setToGlobalStorage({[keyGlobal]: value}))
     }
     if (state[keyGlobal] && state[keyGlobal][0]) return [state[keyGlobal], setValue]
-    return [actualValue, setValue];
+    return [returnedValue, setValue];
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { auth } from '../firebase/index'
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
@@ -10,9 +10,8 @@ import { HideModalLogin } from '../redux/actions'
 import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 function GoogleLogin() {
-    const [googleUser, setGoogleUser] = useState(null)
 
-    const [user, setUser] = useGlobalStorage("user", "")
+    const [, setUser] = useGlobalStorage("user", "")
 
     const dispatch = useDispatch()
 
@@ -25,10 +24,18 @@ function GoogleLogin() {
             const credential = GoogleAuthProvider.credentialFromResult(result)
             const token = credential.accessToken
             const user = result.user
-            console.log('google user...', user)
-            console.log('access token: ', token)
-            setGoogleUser(user)
+            const res = user.providerData[0]
+            const newUser = {
+                userName: res.email,
+                name: res.displayName,
+                email: res.email,
+                photo: res.photoURL,
+                phone: res.phoneNumber ? res.phoneNumber : '',
+                verified: user.emailVerified,
+                token
+            }
             dispatch(HideModalLogin(false))
+            setUser(newUser)
 
         }).catch(error => {
             // Handle Errors here.
@@ -36,29 +43,6 @@ function GoogleLogin() {
         })
 
     }
-
-    useEffect(() => {
-        const setGoogleLog = async () => {
-            if (googleUser !== null) {
-                const res = googleUser.providerData[0]
-                console.log('userrrrr ress', res)
-                const newUser = {
-                    userName: res.email,
-                    name: res.displayName,
-                    email: res.email,
-                    photo: res.photoURL,
-                    phone: res.phoneNumber ? res.phoneNumber : '',
-                    verified: googleUser.emailVerified,
-                }
-                setUser(newUser)
-            }
-        }
-        setGoogleLog()
-    }, [googleUser, setUser])
-
-    useEffect(() => {
-        console.log("Userrrrrrrrrrrrrrrrrr----", user)
-    }, [user])
 
     return (
         <div 
