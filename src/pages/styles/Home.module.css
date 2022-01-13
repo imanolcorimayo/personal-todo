@@ -6,24 +6,31 @@
     background-position-x: -200px;
 }
 
-
-.h1 {
-    margin: auto;
-    text-align: center;
-}
-
 /* Bar title */
 
 .barTitle {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     position: absolute;
     width: 100vw;
     height: 70px;
     background: rgba(108, 182, 224, 0.85);
+    box-shadow: 0px 1px 5px rgb(36, 231, 29);
 }
 
-/* Login button */
+/* Profile sector */
 
+.barTitle_profile {
+    margin-left: 15px;
+}
 
+.barTitle_profile img {
+    width: 50px;
+    border-radius: 100%;
+}
+
+.barTitle_profile span {
+    font-size: 18px;
+    font-weight: 600;
+}
