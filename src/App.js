@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import Details from './pages/Details';
 import Add from './pages/Add';
 
-import './firebase'
+import './firebase/index'
 
 function App() {
   return (

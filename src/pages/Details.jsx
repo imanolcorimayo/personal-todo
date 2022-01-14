@@ -18,7 +18,7 @@ import Salud from '../img/salud.svg'
 
 // Firebase
 import { doc, deleteDoc, setDoc } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../firebase/index'
 
 export default function Details() {
 
