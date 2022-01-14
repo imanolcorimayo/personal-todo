@@ -2,7 +2,7 @@
   "name": "todo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://imanolcorimayo.github.io/personal-todo/",
+  "homepage": "/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
@@ -29,7 +29,7 @@
     "eject": "react-scripts eject",
     "dist": "surge --domain personal-todo.surge.sh",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && cp build/index.html build/200.html && surge build https://personal-todo-new"
   },
   "eslintConfig": {
     "extends": [

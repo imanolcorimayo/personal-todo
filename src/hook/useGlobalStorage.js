@@ -4,6 +4,7 @@ import { setToGlobalStorage } from '../redux/actions'
 
 import { useSelector, useDispatch } from "react-redux";
 
+                //userGlobalStorage
 function getStorageValue(key, defaultValue) {
     
   // getting stored value
@@ -12,9 +13,9 @@ function getStorageValue(key, defaultValue) {
   const initial = JSON.parse(saved);
   return initial || defaultValue;
 } 
-
+                                //"user"      //""
 export const useGlobalStorage = (key, defaultValue) => {
-    const keyGlobal = key + "GlobalStorage"
+    const keyGlobal = key + "GlobalStorage" //userGlobalStorage
     const actualValue = getStorageValue(keyGlobal, defaultValue);
     const state = useSelector( state => state )
     const returnedValue = useSelector ( state => state[keyGlobal])
