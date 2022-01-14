@@ -21,12 +21,12 @@ import { BiAddToQueue } from 'react-icons/bi'
 // Redux and Router
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-// import { useGlobalStorage } from '../hook/useGlobalStorage'
+import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 
 export default function Menu({ name, ...props }) {
 
-  // const [user, setUser] = useGlobalStorage("user", "")
+  const [user, setUser] = useGlobalStorage("user", "")
 
   useEffect(() => {
     const auth = getAuth()
@@ -37,7 +37,7 @@ export default function Menu({ name, ...props }) {
     console.log(userConfirmation)
 
     if (!userConfirmation) {
-      // setUser("")
+      setUser("")
     }
     // eslint-disable-next-line
   }, [])
@@ -95,7 +95,7 @@ export default function Menu({ name, ...props }) {
           </div>
           <div className={s.container_buttons_below + " d-grid gap-2"}>
             {
-              false ?
+              user ?
                 <>
                   <p>Sign out</p>
                   <button className='btn btn-outline-secondary' onClick={logOut}><FiLogOut size="25px" color="#004D78" /> sign out</button>
@@ -107,7 +107,6 @@ export default function Menu({ name, ...props }) {
 
             }
             <p>Know developer</p>
-            {/* <a href="https://github.com/imanolcorimayo"> */}
             <a className={ s.container_buttons_below_button } href="https://github.com/imanolcorimayo" rel="noreferrer" target="_blank">
               <div className='d-grid gap-2'>
                 <button className='btn btn-outline-secondary' onClick="https://github.com/imanolcorimayo">Git Hub</button>

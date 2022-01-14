@@ -7,11 +7,11 @@ import { useDispatch } from 'react-redux'
 import { FcGoogle } from 'react-icons/fc'
 import { HideModalLogin } from '../redux/actions'
 
-// import { useGlobalStorage } from '../hook/useGlobalStorage'
+import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 function GoogleLogin() {
 
-    // const [, setUser] = useGlobalStorage("user", "")
+    const [, setUser] = useGlobalStorage("user", "")
 
     const dispatch = useDispatch()
 
@@ -35,7 +35,7 @@ function GoogleLogin() {
                 token
             }
             dispatch(HideModalLogin(false))
-            // setUser(newUser)
+            setUser(newUser)
 
         }).catch(error => {
             // Handle Errors here.

@@ -10,7 +10,7 @@ import Menu from "../components/Menu";
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getTasks, showTodo } from "../redux/actions";
-// import { useGlobalStorage } from "../hook/useGlobalStorage";
+import { useGlobalStorage } from "../hook/useGlobalStorage";
 
 
 
@@ -19,7 +19,7 @@ export default function Home() {
     const { type, tasks } = useSelector(state => state)
     const dispatch = useDispatch()
 
-    // const [user,] = useGlobalStorage("user", "")
+    const [user,] = useGlobalStorage("user", "")
     
     useEffect(() => {
         dispatch(showTodo())
@@ -33,7 +33,7 @@ export default function Home() {
     return (
         <div className={styles.divPrincipal}>
             <div className={styles.barTitle}>
-                {false ?
+                {user ?
                     <div className={styles.barTitle_profile}>
                         {/* <img src={user.photo} alt="img not found" />
                         <span> {user.name}</span> */}

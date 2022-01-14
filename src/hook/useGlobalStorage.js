@@ -4,25 +4,22 @@ import { setToGlobalStorage } from '../redux/actions'
 
 import { useSelector, useDispatch } from "react-redux";
 
-                //userGlobalStorage
 function getStorageValue(key, defaultValue) {
     
   // getting stored value
-  const saved = window.localStorage.getItem(key);
-  if (typeof saved === "undefined") return defaultValue
+  const saved = localStorage.getItem(key);
   const initial = JSON.parse(saved);
   return initial || defaultValue;
-} 
-                                //"user"      //""
+}
+
 export const useGlobalStorage = (key, defaultValue) => {
-    const keyGlobal = key + "GlobalStorage" //userGlobalStorage
+    const keyGlobal = key + "GlobalStorage"
     const actualValue = getStorageValue(keyGlobal, defaultValue);
     const state = useSelector( state => state )
-    const returnedValue = useSelector ( state => state[keyGlobal])
     const dispatch=useDispatch()
 
     // If value doesn't exist on localStorage, save value
-    if(actualValue === defaultValue) localStorage.setItem(keyGlobal, JSON.stringify(actualValue))
+    if(actualValue===defaultValue) localStorage.setItem(keyGlobal, JSON.stringify(actualValue))
 
     // If value doesn't exist on store, dispatch value
     if (!state.hasOwnProperty(keyGlobal)) {
@@ -30,13 +27,15 @@ export const useGlobalStorage = (key, defaultValue) => {
     }
   
     useEffect(() => {
-        if (typeof returnedValue === "undefined") return localStorage.setItem(keyGlobal, JSON.stringify(null));
-        localStorage.setItem(keyGlobal, JSON.stringify({[keyGlobal]: actualValue}));
-    }, [key, state, returnedValue, keyGlobal]);
+        const stateGlobal = state[keyGlobal]
+        if (typeof stateGlobal !== "undefined") {
+            localStorage.setItem(keyGlobal, JSON.stringify(state[keyGlobal]));
+        }
+    }, [key, state]);
   
     const setValue = (value) => {
     return dispatch(setToGlobalStorage({[keyGlobal]: value}))
     }
     if (state[keyGlobal] && state[keyGlobal][0]) return [state[keyGlobal], setValue]
-    return [returnedValue, setValue];
+    return [actualValue, setValue];
 };
