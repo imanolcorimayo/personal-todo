@@ -35,8 +35,8 @@ export default function Home() {
             <div className={styles.barTitle}>
                 {user ?
                     <div className={styles.barTitle_profile}>
-                        {/* <img src={user.photo} alt="img not found" />
-                        <span> {user.name}</span> */}
+                        <img src={user.photo} alt="img not found" />
+                        <span> {user.name}</span>
                     </div> :
                     <>
                         <span>Sign in on menu</span>

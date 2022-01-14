@@ -70,7 +70,7 @@ export default function Menu({ name, ...props }) {
     const auth = getAuth();
     try {
       await signOut(auth)
-      // setUser("")
+      setUser("")
       setShowMenu(false)
     } catch (error) {
       console.log(error)
