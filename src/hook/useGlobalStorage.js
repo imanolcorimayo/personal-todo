@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 function getStorageValue(key, defaultValue) {
     
   // getting stored value
-  const saved = localStorage.getItem(key);
-  const initial = saved ? JSON.parse(saved) : false;
+  const saved = window.localStorage.getItem(key);
+  const initial = JSON.parse(saved);
   return initial || defaultValue;
 } 
 
