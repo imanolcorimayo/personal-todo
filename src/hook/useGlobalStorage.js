@@ -30,7 +30,7 @@ export const useGlobalStorage = (key, defaultValue) => {
   
     useEffect(() => {
         if (typeof returnedValue === "undefined") return localStorage.setItem(keyGlobal, JSON.stringify(null));
-        localStorage.setItem(keyGlobal, JSON.stringify(returnedValue));
+        localStorage.setItem(keyGlobal, JSON.stringify({[keyGlobal]: actualValue}));
     }, [key, state, returnedValue, keyGlobal]);
   
     const setValue = (value) => {
