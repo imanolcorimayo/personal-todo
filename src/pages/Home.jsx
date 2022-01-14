@@ -19,7 +19,7 @@ export default function Home() {
     const { type, tasks } = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const [user,] = useGlobalStorage("user", "some")
+    const [user,] = useGlobalStorage("user", "")
     
     useEffect(() => {
         dispatch(showTodo())
