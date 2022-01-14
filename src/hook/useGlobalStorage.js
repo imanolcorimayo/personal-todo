@@ -9,8 +9,8 @@ function getStorageValue(key, defaultValue) {
   // getting stored value
   console.log("1: ", key, typeof defaultValue)
   const saved = localStorage.getItem(key);
-  console.log("2: ", saved)
-  if (typeof saved === "undefined") return defaultValue
+  console.log("2: ", saved, typeof saved)
+  if (typeof saved === "undefined" || typeof saved === "string" || saved === "undefined") return defaultValue
   else {
     const initial = JSON.parse(saved);
     console.log("3: ", initial)
