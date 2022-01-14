@@ -7,15 +7,20 @@ import { useSelector, useDispatch } from "react-redux";
 function getStorageValue(key, defaultValue) {
     
   // getting stored value
+  console.log("1: ", key, defaultValue)
   const saved = localStorage.getItem(key);
+  console.log("2: ", saved)
   const initial = JSON.parse(saved);
+  console.log("3: ", initial)
   return initial || defaultValue;
 }
 
 export const useGlobalStorage = (key, defaultValue) => {
     const keyGlobal = key + "GlobalStorage"
     const actualValue = getStorageValue(keyGlobal, defaultValue);
+    console.log("4: ", actualValue)
     const state = useSelector( state => state )
+    console.log("5: ", state)
     const dispatch=useDispatch()
 
     // If value doesn't exist on localStorage, save value
@@ -28,6 +33,7 @@ export const useGlobalStorage = (key, defaultValue) => {
   
     useEffect(() => {
         const stateGlobal = state[keyGlobal]
+        console.log("6: ", stateGlobal)
         if (typeof stateGlobal !== "undefined") {
             localStorage.setItem(keyGlobal, JSON.stringify(state[keyGlobal]));
         }
