@@ -7,12 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 function getStorageValue(key, defaultValue) {
     
   // getting stored value
-  console.log("1: ", key, defaultValue)
+  console.log("1: ", key, typeof defaultValue)
   const saved = localStorage.getItem(key);
   console.log("2: ", saved)
-  const initial = JSON.parse(saved);
-  console.log("3: ", initial)
-  return initial || defaultValue;
+  if (typeof saved === "undefined") return defaultValue
+  else {
+    const initial = JSON.parse(saved);
+    console.log("3: ", initial)
+    return initial || defaultValue
+  }
 }
 
 export const useGlobalStorage = (key, defaultValue) => {
