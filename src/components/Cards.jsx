@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { showTodo } from '../redux/actions'
 
-export default function Cards(props) {
+export default function Cards() {
 
     const { tasksShows } = useSelector(state => state)
     const dispatch = useDispatch();

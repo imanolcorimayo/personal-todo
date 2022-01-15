@@ -19,11 +19,14 @@ import Salud from '../img/salud.svg'
 // Firebase
 import { doc, deleteDoc, setDoc } from 'firebase/firestore'
 import { db } from '../firebase/index'
+import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 export default function Details() {
 
     const dispatch = useDispatch()
     const { task } = useSelector(state => state)
+
+    const [user,] = useGlobalStorage("user", "")
 
     const navigate = useNavigate();
 
@@ -34,13 +37,13 @@ export default function Details() {
     let { id } = useParams()
 
     useEffect(()=> {
-        dispatch(getTask(id))
+        dispatch(getTask(id, user.id))
     }, [dispatch, id])
 
     async function setStateTask(e) {
 
         try {
-            await setDoc(doc(db, "tasks", id), {
+            await setDoc(doc(doc(db, user.id, "tasks"), "tasks", id), {
                 ...task,
                 stateTask: e.target.name
             })
@@ -52,7 +55,7 @@ export default function Details() {
 
     async function deleteTask() {
         try {
-            await deleteDoc(doc(db, "tasks", id))
+            await deleteDoc(doc(doc(db, user.id, "tasks"), "tasks", id))
             navigate("/personal-todo")
         } catch (error) {
             console.log(error)

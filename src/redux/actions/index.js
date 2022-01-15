@@ -38,10 +38,10 @@ export function getTasks(id) {
   }
 }
 
-export function getTask(id) {
+export function getTask(id, uid) {
   return async function (dispatch) {
     try {
-      const dataFirebase = await getDoc(doc(db, "tasks", id))
+      const dataFirebase = await getDoc(doc(doc(db, uid, "tasks"), "tasks", id))
       let data;
       if (dataFirebase.exists()) {
         data = dataFirebase.data()
