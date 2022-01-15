@@ -7,7 +7,8 @@ import {
     SHOW_DONE, 
     FILTER,
     HIDE_MODAL_LOGIN,
-    GLOBAL_LOCAL_STORAGE, 
+    GLOBAL_LOCAL_STORAGE,
+    RESTORE_STATE,
 } from '../constants.js'
 
 const initialState = {
@@ -60,7 +61,7 @@ function rootReducer(state = initialState, action) {
             type: "done",
             tasksShows: response,
         }
-    } else {
+    } else 
     if(action.type === FILTER) {
         let response = state.tasks.filter( (el) =>{
             return (el.stateTask+"" === ""+action.payload[0]) && (el.type.toLocaleLowerCase()+"" === ""+action.payload[1])
@@ -69,19 +70,21 @@ function rootReducer(state = initialState, action) {
             ...state,
             tasksShows: response
         }
-    }
+    } else 
     if(action.type === HIDE_MODAL_LOGIN) {
         return {
             ...state,
             hideModalLogin: action.payload
         }
-    }
+    } else 
     if(action.type === GLOBAL_LOCAL_STORAGE) {
         return {
             ...state,
             ...action.payload
         }
-    }
+    } else 
+    if(action.type === RESTORE_STATE) {
+        return initialState
     }
     return state;
 }

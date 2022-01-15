@@ -27,7 +27,7 @@ export default function Home() {
 
 
     useEffect(() => {
-        dispatch(getTasks())
+        if(user) return dispatch(getTasks(user.id))
     }, [dispatch])
 
     return (

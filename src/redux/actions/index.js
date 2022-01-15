@@ -11,13 +11,14 @@ import { GET_TASKS,
   FILTER,
   HIDE_MODAL_LOGIN,
   GLOBAL_LOCAL_STORAGE,
+  RESTORE_STATE,
  } from '../constants.js'
 
 // get tasks data from firebase
-export function getTasks() {
+export function getTasks(id) {
   return async function (dispatch) {
     try {
-      const dataFirebase = await getDocs(collection(db, "tasks"))
+      const dataFirebase = await getDocs(collection(doc(db, id,"tasks"),"tasks"))
       const data= [] 
       dataFirebase.forEach(doc => {
         data.push({
@@ -88,5 +89,13 @@ export function setToGlobalStorage(data) {
   return {
     type: GLOBAL_LOCAL_STORAGE,
     payload: data,
+  };
+}
+
+// restore state
+export function restoreState() {
+  return {
+    type: RESTORE_STATE,
+    payload: [],
   };
 }

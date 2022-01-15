@@ -19,14 +19,17 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { BiAddToQueue } from 'react-icons/bi'
 
 // Redux and Router
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { useGlobalStorage } from '../hook/useGlobalStorage'
+import { restoreState } from '../redux/actions'
 
 
 export default function Menu({ name, ...props }) {
 
   const [user, setUser] = useGlobalStorage("user", "")
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const auth = getAuth()
@@ -70,6 +73,7 @@ export default function Menu({ name, ...props }) {
     const auth = getAuth();
     try {
       await signOut(auth)
+      dispatch(restoreState())
       setUser("")
       setShowMenu(false)
     } catch (error) {
@@ -97,11 +101,9 @@ export default function Menu({ name, ...props }) {
             {
               user ?
                 <>
-                  <p>Sign out</p>
                   <button className='btn btn-outline-secondary' onClick={logOut}><FiLogOut size="25px" color="#004D78" /> sign out</button>
                 </> :
                 <>
-                  <p>Sign in</p>
                   <button className='btn btn-outline-secondary' onClick={handleShow}><FiLogIn size="25px" color="#004D78" /> sign in</button>
                 </>
 
@@ -109,12 +111,12 @@ export default function Menu({ name, ...props }) {
             <p>Know developer</p>
             <a className={ s.container_buttons_below_button } href="https://github.com/imanolcorimayo" rel="noreferrer" target="_blank">
               <div className='d-grid gap-2'>
-                <button className='btn btn-outline-secondary' onClick="https://github.com/imanolcorimayo">Git Hub</button>
+                <button className='btn btn-outline-secondary'>Git Hub</button>
               </div>
             </a>
             <a className={ s.container_buttons_below_button } href="https://www.linkedin.com/in/imanolcorimayo/" rel="noreferrer" target="_blank">
               <div className='d-grid gap-2'>
-                <button className='btn btn-outline-secondary' onClick="https://github.com/imanolcorimayo">LinkedIn</button>
+                <button className='btn btn-outline-secondary'>LinkedIn</button>
               </div>
             </a>
           </div>

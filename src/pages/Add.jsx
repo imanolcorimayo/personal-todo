@@ -4,13 +4,16 @@ import styles from './styles/Add.module.css'
 
 import { Link } from 'react-router-dom'
 
-import { collection, addDoc } from '@firebase/firestore'
+import { doc, addDoc, collection } from '@firebase/firestore'
 
 import { db } from '../firebase/index'
 
 import { useNavigate } from 'react-router'
+import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 export default function Add() {
+
+    const [user,] = useGlobalStorage("user", "")
 
     const [form, setForm] = useState({
         title: "",
@@ -23,7 +26,8 @@ export default function Add() {
     async function addTask(ev){
         ev.preventDefault()
         try {
-            const docRef = await addDoc(collection(db, "tasks"), {
+            // const docRef = await addDoc(collection(db, "tasks"), {
+            const docRef = await addDoc(collection(doc(db, user.id, "tasks"), "tasks"), {
                 ...form,
                 stateTask: "todo"
               });

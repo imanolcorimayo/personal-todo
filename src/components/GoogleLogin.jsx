@@ -5,7 +5,7 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 
 import { FcGoogle } from 'react-icons/fc'
-import { HideModalLogin } from '../redux/actions'
+import { getTasks, HideModalLogin } from '../redux/actions'
 
 import { useGlobalStorage } from '../hook/useGlobalStorage'
 
@@ -26,6 +26,7 @@ function GoogleLogin() {
             const user = result.user
             const res = user.providerData[0]
             const newUser = {
+                id: res.uid,
                 userName: res.email,
                 name: res.displayName,
                 email: res.email,
@@ -35,6 +36,7 @@ function GoogleLogin() {
                 token
             }
             dispatch(HideModalLogin(false))
+            dispatch(getTasks(res.uid))
             setUser(newUser)
 
         }).catch(error => {
