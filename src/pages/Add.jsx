@@ -44,6 +44,12 @@ export default function Add() {
             })
             navigate("/personal-todo")
         } catch (e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong happened, please try again',
+                showConfirmButton: true,
+                timer: 8500
+            })
             console.error("Error adding document: ", e)
         }
     }
