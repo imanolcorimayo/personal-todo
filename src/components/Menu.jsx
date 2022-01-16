@@ -8,6 +8,7 @@ import GoogleLogin from "../components/GoogleLogin"
 
 // Styles
 import s from "./styles/Menu.module.css"
+import Swal from 'sweetalert2'
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -73,10 +74,22 @@ export default function Menu({ name, ...props }) {
     const auth = getAuth();
     try {
       await signOut(auth)
+      Swal.fire({
+        icon: 'success',
+        title: 'You are logged out succesfuly, I hope see you soon again!',
+        showConfirmButton: true,
+        timer: 8500
+      })
       dispatch(restoreState())
       setUser("")
       setShowMenu(false)
     } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Something wrong, try again',
+        showConfirmButton: true,
+        timer: 8500
+      })
       console.log(error)
     }
 

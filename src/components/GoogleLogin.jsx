@@ -1,12 +1,18 @@
 import React from 'react'
+
+// Styles, icons, Swal, and bootstrap
+import { FcGoogle } from 'react-icons/fc'
+import Swal from 'sweetalert2'
+
+// Firebase
 import { auth } from '../firebase/index'
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
+// Redux and Router
+import { getTasks, HideModalLogin } from '../redux/actions'
 import { useDispatch } from 'react-redux'
 
-import { FcGoogle } from 'react-icons/fc'
-import { getTasks, HideModalLogin } from '../redux/actions'
-
+// Custom Hooks
 import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 function GoogleLogin() {
@@ -38,9 +44,19 @@ function GoogleLogin() {
             dispatch(HideModalLogin(false))
             dispatch(getTasks(res.uid))
             setUser(newUser)
-
+            Swal.fire({
+                icon: 'success',
+                title: 'You are logged succesfuly, enjoy your tools!',
+                showConfirmButton: true,
+                timer: 8500
+            })
         }).catch(error => {
-            // Handle Errors here.
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong, try again',
+                showConfirmButton: true,
+                timer: 8500
+            })
             console.log(error)
         })
 
