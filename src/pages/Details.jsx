@@ -38,7 +38,8 @@ export default function Details() {
 
     useEffect(()=> {
         dispatch(getTask(id, user.id))
-    }, [dispatch, id])
+        // eslint-disable-next-line
+    }, [dispatch, id, user.id])
 
     async function setStateTask(e) {
 

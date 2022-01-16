@@ -28,6 +28,7 @@ export default function Home() {
 
     useEffect(() => {
         if(user) return dispatch(getTasks(user.id))
+        // eslint-disable-next-line
     }, [dispatch])
 
     return (

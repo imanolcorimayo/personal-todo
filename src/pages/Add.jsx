@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 
+// Styles, SweetAlert and Bootstrap
 import styles from './styles/Add.module.css'
+import Swal from 'sweetalert2'
 
+// Router
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
+// Firebase
+import { db } from '../firebase/index'
 import { doc, addDoc, collection } from '@firebase/firestore'
 
-import { db } from '../firebase/index'
-
-import { useNavigate } from 'react-router'
+// Custom Hooks
 import { useGlobalStorage } from '../hook/useGlobalStorage'
 
 export default function Add() {
@@ -30,9 +34,15 @@ export default function Add() {
             const docRef = await addDoc(collection(doc(db, user.id, "tasks"), "tasks"), {
                 ...form,
                 stateTask: "todo"
-              });
-              console.log("Document written with ID: ", docRef.id);
-              navigate("/personal-todo")
+            });
+            console.log("Document written with ID: ", docRef.id);
+            Swal.fire({
+                icon: 'success',
+                title: 'Success, new task created!',
+                showConfirmButton: true,
+                timer: 8500
+            })
+            navigate("/personal-todo")
         } catch (e) {
             console.error("Error adding document: ", e)
         }
@@ -91,10 +101,10 @@ export default function Add() {
                     <datalist id="datalistOptions">
                         <option value="Facultad"/>
                         <option value="Trabajo"/>
-                        <option value="Proyectos"/>
-                        <option value="Salud"/>
+                        <option value="Proyectos" />
+                        <option value="Salud" />
                     </datalist>
-                    <button type="submit" name="done" className={ styles.button + " btn btn-success"}>Done</button>
+                    <button type="submit" name="done" className={styles.button + " btn btn-success"}>Done</button>
                 </div>
             </form>
         </div>
