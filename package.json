@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "dist": "surge --domain personal-todo.surge.sh",
     "predeploy": "npm run build",
-    "deploy": "npm run build && cp build/index.html build/200.html && surge build https://personal-todo-new"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
