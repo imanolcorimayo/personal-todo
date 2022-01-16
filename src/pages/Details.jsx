@@ -68,11 +68,33 @@ export default function Details() {
     }
 
     async function deleteTask() {
-        try {
-            await deleteDoc(doc(doc(db, user.id, "tasks"), "tasks", id))
-            navigate("/personal-todo")
-        } catch (error) {
-            console.log(error)
+        const { value: text } = await Swal.fire({
+            icon: 'question',
+            title: '¿Are you sure that you want delete this task?',
+            input: 'text',
+            inputLabel: 'We need confirm this action',
+            inputPlaceholder: 'Add any word to confirm',
+          })
+
+        if (text) {
+            try {
+                await deleteDoc(doc(doc(db, user.id, "tasks"), "tasks", id))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Task was deleted successfuly',
+                    showConfirmButton: true,
+                    timer: 8500
+                })
+                navigate("/personal-todo")
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something wrong happened, please try again',
+                    showConfirmButton: true,
+                    timer: 8500
+                })
+                console.log(error)
+            }
         }
     }
 
