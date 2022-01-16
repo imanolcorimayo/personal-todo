@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 
-import { useParams } from 'react-router'
-
+// Styles, Swal and Boostrap
 import styles from "./styles/Details.module.css"
-
-import { Link } from 'react-router-dom'
+import Swal from "sweetalert2"
 
 // Redux and Router
-import { getTask } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
+import { getTask } from '../redux/actions'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
+import { useParams } from 'react-router'
 
+// Img's
 import Facultad from '../img/facultad.svg'
 import Trabajo from '../img/trabajo.svg'
 import Proyectos from '../img/proyectos.svg'
@@ -48,8 +49,20 @@ export default function Details() {
                 ...task,
                 stateTask: e.target.name
             })
+            Swal.fire({
+                icon: 'success',
+                title: 'Status was changed succesfully to ' + e.target.name,
+                showConfirmButton: true,
+                timer: 8500
+            })
             navigate("/personal-todo")
         } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong happened, please try again',
+                showConfirmButton: true,
+                timer: 8500
+            })
             console.log(error)
         }
     }
