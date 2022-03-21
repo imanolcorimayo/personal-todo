@@ -1,0 +1,14 @@
+.container {
+    background-color: rgb(203 213 225);
+}
+
+.nav {
+    background-color: rgb(100 116 139);
+}
+
+/* CONTAINER DATA */
+
+.container_data {
+    background-color: white;
+    height: 20rem;
+}

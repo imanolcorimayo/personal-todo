@@ -14,10 +14,10 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 
-import { FiLogIn } from 'react-icons/fi'
-import { FiLogOut } from 'react-icons/fi'
+import { FiLogIn, FiLogOut } from 'react-icons/fi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { BiAddToQueue } from 'react-icons/bi'
+import { IoWalletOutline } from 'react-icons/io5'
 
 // Redux and Router
 import { useSelector, useDispatch } from 'react-redux'
@@ -66,8 +66,9 @@ export default function Menu({ name, ...props }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function navigates(){
-    navigate("/personal-todo/add")
+  function navigates(event){
+    if(event.target.id === "add") navigate("/personal-todo/add")
+    else navigate("/personal-todo/accounting")
   }
 
   async function logOut() {
@@ -106,8 +107,13 @@ export default function Menu({ name, ...props }) {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className='d-grid gap-2'>
-            <button className='btn btn-outline-success' onClick={navigates} >
+            <button className='btn btn-outline-success' id="add" onClick={navigates} >
               <BiAddToQueue size="30px"/> Add task
+            </button>
+          </div>
+          <div className='d-grid gap-2 my-1'>
+            <button className='btn btn-outline-secondary' id="accounting" onClick={navigates} >
+              <IoWalletOutline size="30px"/> Accounting
             </button>
           </div>
           <div className={s.container_buttons_below + " d-grid gap-2"}>
