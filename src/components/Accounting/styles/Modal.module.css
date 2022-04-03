@@ -1,0 +1,80 @@
+.modalContainer {
+  height: 100vh;
+  width: 100vw;
+  top: -150vw;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+.modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(61, 61, 61, 0.548);
+}
+
+.formContainer {
+  position: relative;
+  background-color: rgb(196, 196, 196);
+  margin: auto;
+  margin-top: 15vh;
+  width: 90vw;
+  z-index: 100;
+  border-radius: 15px;
+}
+
+.form {
+  margin: auto;
+  width: 80vw;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+}
+
+.form h3 {
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: rgb(85, 85, 85);
+}
+
+.form span {
+  display: block;
+  text-align: center;
+  margin: 15px;
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: rgb(85, 85, 85);
+}
+
+.form input,
+select {
+  margin: 5px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+}
+
+.form button {
+  margin: 15px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(54, 196, 66);
+}
+
+.form button:hover {
+  border: 2px solid rgba(105, 105, 105, 0.664);
+  background-color: rgb(42, 184, 54);
+}
+
+.form input:focus,
+select:focus {
+  outline: none;
+  border: 3px solid rgba(105, 105, 105, 0.664);
+}

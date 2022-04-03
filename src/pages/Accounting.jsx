@@ -15,19 +15,22 @@ import { doc, addDoc, collection } from '@firebase/firestore'
 // Custom Hooks
 import { useGlobalStorage } from '../hook/useGlobalStorage'
 
-export default function Add() {
+// Components
+import Modal from '../components/Accounting/Modal.jsx'
+
+export default function Accounting() {
 
     const [user,] = useGlobalStorage("user", "")
 
     const [form, setForm] = useState({
         title: "",
         type: "",
-        description: "",
+        count: "",
     })
 
     const navigate = useNavigate()
 
-    async function addTask(ev){
+    async function addExpense(ev){
         ev.preventDefault()
         try {
             // const docRef = await addDoc(collection(db, "tasks"), {
@@ -54,31 +57,23 @@ export default function Add() {
         }
     }
 
-    function handleForm(e) {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
+    function showModal() {
+        const modal = document.getElementById('modal-accounting')
+        modal.style.top = "0vh"
     }
 
     return (
-        <div className={styles.container + ' h-screen'}>
-            <div className={'p-2 ' + styles.nav}>
-                <h1 className='text-center text-white'>Accounting</h1>
+        <div className={styles.container}>
+            <Modal></Modal>
+            <div className={styles.nav}>
+                <h1>Accounting</h1>
+                <button onClick={showModal}>show modal</button>
             </div>
-            <h2 className='mt-3'>Expenses</h2>
-            <div className={ styles.container_data + ' m-auto mb-3' }>
-            </div>
-            <div>
-                <form action="">
-                    <span>Title</span>
-                    <input type="text" />
-                    <span>Type</span>
-                    <input type="text" />
-                    <span>Count</span>
-                    <input type="text" />
-                </form>
-                <button>Add new expense</button>
+            <span>Expenses</span>
+            <span>Enjoy</span>
+            <span>Services</span>
+            <span>Others</span>
+            <div className={ styles.container_data }>
             </div>
         </div>
     )
