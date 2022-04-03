@@ -8,6 +8,7 @@
 
 .nav {
   background-color: rgb(100 116 139);
+  display: flex;
 }
 
 /* CONTAINER DATA */
