@@ -9,6 +9,7 @@ import {
     HIDE_MODAL_LOGIN,
     GLOBAL_LOCAL_STORAGE,
     RESTORE_STATE,
+    GET_ACCOUNTING,
 } from '../constants.js'
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
     task: {},
     type: "todo",
     hideModalLogin: "",
+    accounting: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -25,6 +27,12 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             tasks: action.payload
+        }
+    } else
+    if (action.type === GET_ACCOUNTING) {
+        return {
+            ...state,
+            accounting: action.payload
         }
     } else
     if (action.type === GET_TASK) {

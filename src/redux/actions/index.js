@@ -12,6 +12,7 @@ import { GET_TASKS,
   HIDE_MODAL_LOGIN,
   GLOBAL_LOCAL_STORAGE,
   RESTORE_STATE,
+  GET_ACCOUNTING,
  } from '../constants.js'
 
 // get tasks data from firebase
@@ -29,6 +30,30 @@ export function getTasks(id) {
       dispatch(
         {
           type: GET_TASKS,
+          payload: data,
+        }
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+// get accounting data from firebase
+export function getAccounting(id) {
+  return async function (dispatch) {
+    try {
+      const dataFirebase = await getDocs(collection(doc(db, id,"accounting"),"accounting"))
+      const data= [] 
+      dataFirebase.forEach(doc => {
+        data.push({
+          ...doc.data(),
+          id: doc.id
+        })
+      })
+      dispatch(
+        {
+          type: GET_ACCOUNTING,
           payload: data,
         }
       )
